@@ -1,4 +1,4 @@
-import APIKEY from "./apikey.js";
+import APIKEY from "./node_modules/apikey.js";
 
 const searchInput = document.getElementById("search");
 const form = document.getElementById("form");
