@@ -1,0 +1,95 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
+
+:root {
+	--white: #fbfbfb;
+	--card-background: #000000d0;
+	--search-background: #7c7c7c2b;
+}
+
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+/* Typography */
+
+.city {
+	font-size: 2rem;
+	font-weight: 700;
+}
+
+.temperature {
+	font-size: 2.7rem;
+	font-weight: 400;
+}
+
+.weather p {
+	font-size: 1rem;
+}
+
+.search {
+	font-size: 1rem;
+}
+
+/* General styling */
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	font-family: "Open Sans";
+	background: #222;
+	background-image: url("https://source.unsplash.com/1600x900/?City");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+
+.card {
+	padding: 2em;
+	border-radius: 1em;
+	width: 90%;
+	max-width: 30rem;
+	background-color: var(--card-background);
+	color: var(--white);
+}
+
+.form {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.search {
+	padding: 1em;
+	outline: none;
+	border: none;
+	border-radius: 1.4em;
+	width: 85%;
+	margin-right: 1rem;
+	color: var(--white);
+	background-color: var(--search-background);
+}
+
+.form button {
+	padding: 0.7em;
+	border-radius: 50%;
+	width: 2.5rem;
+	outline: none;
+	border: none;
+	cursor: pointer;
+	background-color: var(--white);
+}
+
+.fa-search {
+	font-size: 1.2rem;
+	color: #222;
+}
+
+.city {
+	margin: 1.5rem 0;
+}
