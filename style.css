@@ -36,20 +36,24 @@
 
 /* General styling */
 
+/* Card styling */
+
 body {
 	display: flex;
-	justify-content: center;
 	align-items: center;
+	flex-direction: column;
 	height: 100vh;
 	font-family: "Open Sans";
 	background: #222;
 	background-image: url("https://source.unsplash.com/1600x900/?Landscape");
-	background-repeat: no-repeat;
+	background-attachment: fixed;
 	background-size: cover;
 	background-position: center;
+	overflow: auto;
 }
 
 .card {
+	margin-top: 2rem;
 	padding: 2em;
 	border-radius: 1em;
 	width: 90%;
@@ -90,7 +94,7 @@ body {
 	color: #222;
 }
 
-.city {
+.card .city {
 	margin-top: 2.5rem;
 }
 
@@ -103,4 +107,24 @@ body {
 .error-location {
 	text-align: center;
 	margin-top: 1rem;
+}
+
+/* Next days styling */
+.nextdays-weather {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+	grid-gap: 20px;
+	width: 100%;
+	max-width: 100rem;
+	justify-items: center;
+	margin: 2rem 0;
+}
+
+.day {
+	padding: 2em;
+	border-radius: 1em;
+	width: 90%;
+	max-width: 30rem;
+	background-color: var(--card-background);
+	color: var(--white);
 }
