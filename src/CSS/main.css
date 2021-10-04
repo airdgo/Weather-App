@@ -1,0 +1,153 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
+:root {
+  --white: #fbfbfb;
+  --card-background: #000000d0;
+  --search-background: #7c7c7c2b; }
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+/* Typography */
+.city {
+  font-size: 2rem;
+  font-weight: 700; }
+
+.temperature {
+  font-size: 2.7rem;
+  font-weight: 400; }
+
+.card-weather p {
+  font-size: 1rem; }
+
+.search {
+  font-size: 1rem; }
+
+/* General styling */
+/* Card styling */
+body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  font-family: "Open Sans";
+  background: #222;
+  background-image: url("https://source.unsplash.com/1600x900/?Landscape");
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  overflow: auto; }
+
+.card {
+  margin-top: 2rem;
+  padding: 2em;
+  border-radius: 1em;
+  width: 90%;
+  max-width: 30rem;
+  background-color: var(--card-background);
+  color: var(--white); }
+
+.form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+
+.search {
+  padding: 1em;
+  outline: none;
+  border: none;
+  border-radius: 1.4em;
+  width: 85%;
+  margin-right: 1rem;
+  color: var(--white);
+  background-color: var(--search-background); }
+
+.form button {
+  padding: 0.7em;
+  border-radius: 50%;
+  width: 2.5rem;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background-color: var(--white); }
+
+.fa-search {
+  font-size: 1.2rem;
+  color: #222; }
+
+.card .city {
+  margin-top: 2.5rem; }
+
+.temperature-and-icon {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 0; }
+
+.error-location {
+  text-align: center;
+  margin-top: 1rem; }
+
+/* Next days styling */
+.nextdays-weather {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  grid-gap: 20px;
+  width: 100%;
+  max-width: 100rem;
+  justify-items: center;
+  margin: 2rem 0; }
+
+.day {
+  padding: 2em;
+  border-radius: 1em;
+  width: 90%;
+  max-width: 30rem;
+  background-color: var(--card-background);
+  color: var(--white); }
+
+.lds-dual-ring {
+  display: inline-block;
+  width: 80px;
+  height: 80px; }
+
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid #fcf;
+  border-color: #fcf transparent #fcf transparent;
+  animation: lds-dual-ring 1.2s linear infinite; }
+
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
+.loader {
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.loader.hidden {
+  animation: fadeOut 1s;
+  animation-fill-mode: forwards; }
+
+@keyframes fadeOut {
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    z-index: -1; } }
+
+/*# sourceMappingURL=main.css.map */
