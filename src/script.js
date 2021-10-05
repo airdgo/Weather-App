@@ -1,18 +1,17 @@
 // Import modules
 import APIKEY from "./apikey.js";
 import getDays from "./getDays.js";
+import { updateCardWeather, nextDaysWeather } from "./displayWeather.js";
 
 // Loading spinner
 window.addEventListener("load", () => {
 	const loader = document.querySelector(".loader");
-	console.log(loader);
 	loader.classList.add("hidden");
 });
 
 // Get elements from the HTML
 const searchInput = document.getElementById("search");
 const form = document.getElementById("form");
-const cardWeather = document.getElementById("card-weather");
 const nextDaysContainer = document.getElementById("nextdays-weather");
 
 // Define API funcions
@@ -31,6 +30,7 @@ async function getWeatherByLocation(location) {
 	if (!response.ok) {
 		cardWeather.innerHTML = `<p class="error-location">Sorry, we can't find the location<p>`;
 	}
+
 	const resp = await fetch(
 		weather_APIURL(responseData.coord.lat, responseData.coord.lon)
 	);
@@ -39,9 +39,9 @@ async function getWeatherByLocation(location) {
 	console.log(respData);
 
 	// Current weather displayed on the card
-	updateCard(
+	updateCardWeather(
 		upperCase(location),
-		responseData.main.temp,
+		Math.round(responseData.main.temp),
 		responseData.weather[0].icon,
 		upperCase(responseData.weather[0].description),
 		responseData.main.humidity,
@@ -49,13 +49,13 @@ async function getWeatherByLocation(location) {
 	);
 
 	// Weather for the next days
-	for (let i = 0; i <= 3; i++) {
-		let day_x = new Date(); // get the current date
+	for (let i = 0; i <= 7; i++) {
+		let day_x = new Date(2021, 10, 1); // get a date with the day index "1"
 		day_x.setDate(day_x.getDate() + i); // get the day number
 
 		nextDaysWeather(
-			getDays[[day_x.getDay()]],
-			respData.daily[i].temp.day,
+			getDays[day_x.getDay()],
+			Math.round(respData.daily[i].temp.day),
 			respData.daily[i].weather[0].icon,
 			upperCase(respData.daily[i].weather[0].description),
 			respData.daily[i].humidity,
@@ -64,47 +64,25 @@ async function getWeatherByLocation(location) {
 	}
 }
 
+// Event listener on form
 form.addEventListener("submit", (e) => {
 	e.preventDefault();
-	nextDaysContainer.innerHTML = "";
+	nextDaysContainer.innerHTML = ""; // delete previous weather for the next days
 	getWeatherByLocation(searchInput.value);
 });
 
-// Function to display the curren weather
-function updateCard(city, temperature, icon, description, humidity, wind) {
-	cardWeather.innerHTML = `			
-	<h2 class="city">Weather in ${city}</h2>
-	<div class="temperature-and-icon">
-		<h1 class="temperature">${temperature}°C</h1>
-		<img src="http://openweathermap.org/img/wn/${icon}@2x.png" alt="" class="weather-icon" />
-	</div>
-	<div class="description"><p>${description}</p></div>
-	<div class="humidity"><p>Humidity: ${humidity} %</p></div>
-	<div class="wind"><p>Wind speed: ${wind} km/h</p></div>`;
-}
-
-// Function to display the weather for the next days
-function nextDaysWeather(
-	dayname,
-	temperature,
-	icon,
-	description,
-	humidity,
-	wind
-) {
-	const day = document.createElement("div");
-	day.className = "day";
-	day.innerHTML = `
-		<h2 class="city">${dayname}</h2>
-		<div class="temperature-and-icon">
-			<h1 class="temperature">${temperature}°C</h1>
-			<img src="http://openweathermap.org/img/wn/${icon}@2x.png" alt="" class="weather-icon" />
-		</div>
-		<div class="description"><p>${description}</p></div>
-		<div class="humidity"><p>Humidity: ${humidity} %</p></div>
-		<div class="wind"><p>Wind speed: ${wind} km/h</p></div>`;
-	nextDaysContainer.appendChild(day);
-}
+const modalContainer = document.getElementById("modal_container");
+const cardWeather = document.getElementById("card-weather");
+cardWeather.addEventListener("click", (e) => {
+	let element = e.target;
+	console.log(element);
+	if (
+		element.id == "open-details" ||
+		element.className == "fas fa-ellipsis-h"
+	) {
+		modalContainer.classList.add("show");
+	}
+});
 
 // Function to make the text entered by the user uppercase
 const upperCase = (str) => str.replace(/^(.)|\s+(.)/g, (c) => c.toUpperCase());

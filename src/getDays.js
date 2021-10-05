@@ -1,3 +1,4 @@
+// Function to count the days
 function getDays() {
 	let day_0 = new Date();
 	day_0.setDate(day_0.getDate());
@@ -45,7 +46,6 @@ function getDays() {
 	for (let i = 0; i <= 6; i++) {
 		weekdays.push(days[days_num[i]]);
 	}
-
 	return weekdays;
 }
 
