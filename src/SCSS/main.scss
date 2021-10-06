@@ -223,8 +223,9 @@ body {
 $breakpoint-phone: 500px;
 .modal {
 	background-color: rgb(41, 40, 39);
-	width: 70%;
-	max-width: 70rem;
+	color: var(--white);
+	width: 90%;
+	max-width: 50rem;
 	padding: 2rem 3rem;
 	border-radius: 0.5em;
 
@@ -263,6 +264,34 @@ $breakpoint-phone: 500px;
 
 		@media (max-width: $breakpoint-phone) {
 			font-size: 0.9rem;
+		}
+	}
+}
+
+.hours {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));
+	justify-items: center;
+}
+
+.details {
+	display: flex;
+	justify-content: space-around;
+	margin: 1em 0;
+
+	div {
+		display: flex;
+		flex-direction: column;
+
+		p {
+			text-transform: uppercase;
+			margin: 0;
+			line-height: 2;
+			font-size: 0.9rem;
+		}
+
+		span {
+			margin-bottom: 0.7em;
 		}
 	}
 }

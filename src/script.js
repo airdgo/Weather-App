@@ -2,6 +2,8 @@
 import APIKEY from "./apikey.js";
 import getDays from "./getDays.js";
 import { updateCardWeather, nextDaysWeather } from "./displayWeather.js";
+import { cardModalHtml, updateHours } from "./modal.js";
+import { upperCase } from "./helpers.js";
 
 // Loading spinner
 window.addEventListener("load", () => {
@@ -36,9 +38,10 @@ async function getWeatherByLocation(location) {
 	);
 
 	const respData = await resp.json();
+	console.log(responseData);
 	console.log(respData);
 
-	// Current weather displayed on the card
+	// Display the current weather on the card
 	updateCardWeather(
 		upperCase(location),
 		Math.round(responseData.main.temp),
@@ -48,7 +51,7 @@ async function getWeatherByLocation(location) {
 		responseData.wind.speed
 	);
 
-	// Weather for the next days
+	// Display the weather for the next days
 	for (let i = 0; i <= 7; i++) {
 		let day_x = new Date(2021, 10, 1); // get a date with the day index "1"
 		day_x.setDate(day_x.getDate() + i); // get the day number
@@ -64,6 +67,31 @@ async function getWeatherByLocation(location) {
 	}
 }
 
+// Update modal for the card
+async function updateCardModal(location) {
+	// Fetch the data
+	const response = await fetch(location_APIURL(location));
+	const responseData = await response.json();
+
+	const resp = await fetch(
+		weather_APIURL(responseData.coord.lat, responseData.coord.lon)
+	);
+	const respData = await resp.json();
+
+	// Update the modal html
+	cardModalHtml(
+		responseData.main.feels_like,
+		responseData.main.temp_max,
+		responseData.main.temp_min,
+		responseData.main.pressure,
+		respData.current.uvi,
+		responseData.visibility
+	);
+
+	// Update the hours
+	updateHours(respData);
+}
+
 // Event listener on form
 form.addEventListener("submit", (e) => {
 	e.preventDefault();
@@ -71,18 +99,25 @@ form.addEventListener("submit", (e) => {
 	getWeatherByLocation(searchInput.value);
 });
 
+// Open modal when user clicks the three dots
 const modalContainer = document.getElementById("modal_container");
 const cardWeather = document.getElementById("card-weather");
 cardWeather.addEventListener("click", (e) => {
 	let element = e.target;
-	console.log(element);
+
 	if (
 		element.id == "open-details" ||
 		element.className == "fas fa-ellipsis-h"
 	) {
+		updateCardModal(searchInput.value);
 		modalContainer.classList.add("show");
 	}
 });
 
-// Function to make the text entered by the user uppercase
-const upperCase = (str) => str.replace(/^(.)|\s+(.)/g, (c) => c.toUpperCase());
+// Close modal
+const modal = document.getElementById("modal");
+modal.addEventListener("click", (e) => {
+	if (e.target.id == "close") {
+		modalContainer.classList.remove("show");
+	}
+});

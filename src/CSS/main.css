@@ -180,8 +180,9 @@ body {
 
 .modal {
   background-color: #292827;
-  width: 70%;
-  max-width: 70rem;
+  color: var(--white);
+  width: 90%;
+  max-width: 50rem;
   padding: 2rem 3rem;
   border-radius: 0.5em; }
   @media (max-width: 500px) {
@@ -212,5 +213,25 @@ body {
     @media (max-width: 500px) {
       .modal button {
         font-size: 0.9rem; } }
+
+.hours {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));
+  justify-items: center; }
+
+.details {
+  display: flex;
+  justify-content: space-around;
+  margin: 1em 0; }
+  .details div {
+    display: flex;
+    flex-direction: column; }
+    .details div p {
+      text-transform: uppercase;
+      margin: 0;
+      line-height: 2;
+      font-size: 0.9rem; }
+    .details div span {
+      margin-bottom: 0.7em; }
 
 /*# sourceMappingURL=main.css.map */
