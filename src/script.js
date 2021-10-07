@@ -2,7 +2,7 @@
 import APIKEY from "./apikey.js";
 import getDays from "./getDays.js";
 import { updateCardWeather, nextDaysWeather } from "./displayWeather.js";
-import { cardModalHtml, updateHours } from "./modal.js";
+import { cardModalHtml, updateHours, updateNextDaysModal } from "./modal.js";
 
 // Loading spinner
 window.addEventListener("load", () => {
@@ -111,17 +111,13 @@ cardWeather.addEventListener("click", (e) => {
 	}
 });
 
+// Open modal for the next days
 const next_days_weather = document.getElementById("nextdays-weather");
 next_days_weather.addEventListener("click", (e) => {
-	let element = e.target;
-	console.log(element.parentElement);
-
-	// if (
-	// 	element.id == "open-details" ||
-	// 	element.className == "fas fa-ellipsis-h"
-	// ) {
-	// 	modalContainer.classList.add("show");
-	// }
+	let index = e.target.parentElement.id;
+	let day = e.target.parentElement.firstElementChild.innerText;
+	updateNextDaysModal(searchInput.value, index, day);
+	modalContainer.classList.add("show");
 });
 
 // Close modal

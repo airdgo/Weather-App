@@ -1,4 +1,12 @@
+import APIKEY from "./apikey.js";
 import { mToKm, formatAMPM } from "./helpers.js";
+
+// Define API funcions
+const location_APIURL = (location) =>
+	`https://api.openweathermap.org/data/2.5/weather?&units=metric&q=${location}&appid=${APIKEY}`;
+
+const weather_APIURL = (latitude, longitude) =>
+	`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=metric&exclude=minutely&appid=${APIKEY}`;
 
 // Function to update the card modal
 export function cardModalHtml(
@@ -57,7 +65,8 @@ export function updateHours(respData) {
 }
 
 // Function to update the modal for the next days
-export function nextDaysModalHtml(
+function nextDaysModalHtml(
+	day,
 	feelsLike,
 	maxTemp,
 	minTemp,
@@ -67,8 +76,7 @@ export function nextDaysModalHtml(
 ) {
 	const modal = document.getElementById("modal");
 	modal.innerHTML = `
-        <h1>Today:</h1>
-        <div class="hours"></div>
+        <h1>${day}:</h1>
         <div class="details">
             <div>
                 <p>Feels like:</p>
@@ -89,4 +97,26 @@ export function nextDaysModalHtml(
         </div>
         <button id="close">Close</button>
     `;
+}
+
+export async function updateNextDaysModal(location, index, day) {
+	// Fetch the data
+	const response = await fetch(location_APIURL(location));
+	const responseData = await response.json();
+
+	const resp = await fetch(
+		weather_APIURL(responseData.coord.lat, responseData.coord.lon)
+	);
+	const respData = await resp.json();
+
+	// Update the modal html
+	nextDaysModalHtml(
+		day,
+		respData.daily[index].feels_like.day,
+		respData.daily[index].temp.max,
+		respData.daily[index].temp.min,
+		respData.daily[index].pressure,
+		respData.daily[index].uvi,
+		respData.daily[index].clouds
+	);
 }
