@@ -3,7 +3,6 @@ import APIKEY from "./apikey.js";
 import getDays from "./getDays.js";
 import { updateCardWeather, nextDaysWeather } from "./displayWeather.js";
 import { cardModalHtml, updateHours } from "./modal.js";
-import { upperCase } from "./helpers.js";
 
 // Loading spinner
 window.addEventListener("load", () => {
@@ -43,10 +42,10 @@ async function getWeatherByLocation(location) {
 
 	// Display the current weather on the card
 	updateCardWeather(
-		upperCase(location),
-		Math.round(responseData.main.temp),
+		location,
+		responseData.main.temp,
 		responseData.weather[0].icon,
-		upperCase(responseData.weather[0].description),
+		responseData.weather[0].description,
 		responseData.main.humidity,
 		responseData.wind.speed
 	);
@@ -57,10 +56,11 @@ async function getWeatherByLocation(location) {
 		day_x.setDate(day_x.getDate() + i); // get the day number
 
 		nextDaysWeather(
+			i,
 			getDays[day_x.getDay()],
-			Math.round(respData.daily[i].temp.day),
+			respData.daily[i].temp.day,
 			respData.daily[i].weather[0].icon,
-			upperCase(respData.daily[i].weather[0].description),
+			respData.daily[i].weather[0].description,
 			respData.daily[i].humidity,
 			respData.daily[i].wind_speed
 		);
@@ -105,13 +105,23 @@ const cardWeather = document.getElementById("card-weather");
 cardWeather.addEventListener("click", (e) => {
 	let element = e.target;
 
-	if (
-		element.id == "open-details" ||
-		element.className == "fas fa-ellipsis-h"
-	) {
+	if (element.id == "open-details") {
 		updateCardModal(searchInput.value);
 		modalContainer.classList.add("show");
 	}
+});
+
+const next_days_weather = document.getElementById("nextdays-weather");
+next_days_weather.addEventListener("click", (e) => {
+	let element = e.target;
+	console.log(element.parentElement);
+
+	// if (
+	// 	element.id == "open-details" ||
+	// 	element.className == "fas fa-ellipsis-h"
+	// ) {
+	// 	modalContainer.classList.add("show");
+	// }
 });
 
 // Close modal
