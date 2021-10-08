@@ -13,3 +13,7 @@ export const formatAMPM = (hours) => {
 	let strTime = hours + ampm;
 	return strTime;
 };
+
+// Function to add "+" insted of whitespace --- used to take the weather description and to put it into the query in order to search for an image with that description
+
+export const query = (str) => str.replace(/\s/g, "+");

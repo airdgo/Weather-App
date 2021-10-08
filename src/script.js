@@ -3,6 +3,7 @@ import APIKEY from "./apikey.js";
 import getDays from "./getDays.js";
 import { updateCardWeather, nextDaysWeather } from "./displayWeather.js";
 import { cardModalHtml, updateHours, updateNextDaysModal } from "./modal.js";
+import { query } from "./helpers.js";
 
 // Loading spinner
 window.addEventListener("load", () => {
@@ -16,10 +17,10 @@ const form = document.getElementById("form");
 const nextDaysContainer = document.getElementById("nextdays-weather");
 
 // Define API funcions
-const location_APIURL = (location) =>
+export const location_APIURL = (location) =>
 	`https://api.openweathermap.org/data/2.5/weather?&units=metric&q=${location}&appid=${APIKEY}`;
 
-const weather_APIURL = (latitude, longitude) =>
+export const weather_APIURL = (latitude, longitude) =>
 	`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=metric&exclude=minutely&appid=${APIKEY}`;
 
 // Function to get the weather when the user enters a location
@@ -28,8 +29,10 @@ async function getWeatherByLocation(location) {
 	const responseData = await response.json();
 
 	// Check if the location entered exists
+
 	if (!response.ok) {
-		cardWeather.innerHTML = `<p class="error-location">Sorry, we can't find the location<p>`;
+		cardWeather.innerHTML = `<p class="error-location">Sorry, we can't find the location.</p>`;
+		return;
 	}
 
 	const resp = await fetch(
@@ -39,6 +42,11 @@ async function getWeatherByLocation(location) {
 	const respData = await resp.json();
 	console.log(responseData);
 	console.log(respData);
+
+	// Update backgorund image according to the weather description
+	document.body.style.backgroundImage = `url('https://source.unsplash.com/1600x900/?${query(
+		responseData.weather[0].description
+	)}')`;
 
 	// Display the current weather on the card
 	updateCardWeather(
@@ -96,6 +104,11 @@ async function updateCardModal(location) {
 form.addEventListener("submit", (e) => {
 	e.preventDefault();
 	nextDaysContainer.innerHTML = ""; // delete previous weather for the next days
+	if (searchInput.value === "") {
+		cardWeather.innerHTML = `<p class="error-location">Please enter a location!</p>`;
+		return;
+	}
+
 	getWeatherByLocation(searchInput.value);
 });
 
@@ -114,10 +127,15 @@ cardWeather.addEventListener("click", (e) => {
 // Open modal for the next days
 const next_days_weather = document.getElementById("nextdays-weather");
 next_days_weather.addEventListener("click", (e) => {
+	// get the id of the card
 	let index = e.target.parentElement.id;
+	// get the day of each card
 	let day = e.target.parentElement.firstElementChild.innerText;
-	updateNextDaysModal(searchInput.value, index, day);
-	modalContainer.classList.add("show");
+	// update the modal for each card when users clicks the three buttons of the card
+	if (e.target.id == "open-details") {
+		updateNextDaysModal(searchInput.value, index, day);
+		modalContainer.classList.add("show");
+	}
 });
 
 // Close modal
@@ -125,5 +143,27 @@ const modal = document.getElementById("modal");
 modal.addEventListener("click", (e) => {
 	if (e.target.id == "close") {
 		modalContainer.classList.remove("show");
+	}
+});
+
+// Save favourite location
+
+const saveLocation = document.getElementById("save_location");
+saveLocation.addEventListener("click", (e) => {
+	if (searchInput.value === "") {
+		return;
+	}
+
+	localStorage.setItem("Favourite", searchInput.value);
+	console.log(localStorage);
+});
+
+// Show favourite location
+const showFavouriteLocation = document.getElementById("show_favourite");
+showFavouriteLocation.addEventListener("click", () => {
+	let favouriteLocation = localStorage.getItem("Favourite");
+	console.log(favouriteLocation);
+	if (favouriteLocation) {
+		getWeatherByLocation(favouriteLocation);
 	}
 });

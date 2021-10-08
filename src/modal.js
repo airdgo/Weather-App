@@ -1,12 +1,5 @@
-import APIKEY from "./apikey.js";
+import { location_APIURL, weather_APIURL } from "./script.js";
 import { mToKm, formatAMPM } from "./helpers.js";
-
-// Define API funcions
-const location_APIURL = (location) =>
-	`https://api.openweathermap.org/data/2.5/weather?&units=metric&q=${location}&appid=${APIKEY}`;
-
-const weather_APIURL = (latitude, longitude) =>
-	`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=metric&exclude=minutely&appid=${APIKEY}`;
 
 // Function to update the card modal
 export function cardModalHtml(
@@ -64,7 +57,7 @@ export function updateHours(respData) {
 	}
 }
 
-// Function to update the modal for the next days
+// Function to update the modal html for the next days
 function nextDaysModalHtml(
 	day,
 	feelsLike,
@@ -99,6 +92,7 @@ function nextDaysModalHtml(
     `;
 }
 
+// Function to update the modal html for the next days
 export async function updateNextDaysModal(location, index, day) {
 	// Fetch the data
 	const response = await fetch(location_APIURL(location));
@@ -117,6 +111,6 @@ export async function updateNextDaysModal(location, index, day) {
 		respData.daily[index].temp.min,
 		respData.daily[index].pressure,
 		respData.daily[index].uvi,
-		respData.daily[index].clouds
+		respData.current.visibility
 	);
 }
