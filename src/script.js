@@ -100,16 +100,19 @@ async function updateCardModal(location) {
 	updateHours(respData);
 }
 
+let favourite; // variable to store the input value
 // Event listener on form
 form.addEventListener("submit", (e) => {
 	e.preventDefault();
+
 	nextDaysContainer.innerHTML = ""; // delete previous weather for the next days
 	if (searchInput.value === "") {
 		cardWeather.innerHTML = `<p class="error-location">Please enter a location!</p>`;
 		return;
 	}
-
 	getWeatherByLocation(searchInput.value);
+	favourite = searchInput.value;
+	searchInput.value = "";
 });
 
 // Open modal when user clicks the three dots
@@ -119,7 +122,7 @@ cardWeather.addEventListener("click", (e) => {
 	let element = e.target;
 
 	if (element.id == "open-details") {
-		updateCardModal(searchInput.value);
+		updateCardModal(favourite);
 		modalContainer.classList.add("show");
 	}
 });
@@ -133,7 +136,7 @@ next_days_weather.addEventListener("click", (e) => {
 	let day = e.target.parentElement.firstElementChild.innerText;
 	// update the modal for each card when users clicks the three buttons of the card
 	if (e.target.id == "open-details") {
-		updateNextDaysModal(searchInput.value, index, day);
+		updateNextDaysModal(favourite, index, day);
 		modalContainer.classList.add("show");
 	}
 });
@@ -147,14 +150,13 @@ modal.addEventListener("click", (e) => {
 });
 
 // Save favourite location
-
 const saveLocation = document.getElementById("save_location");
-saveLocation.addEventListener("click", (e) => {
-	if (searchInput.value === "") {
+saveLocation.addEventListener("click", () => {
+	if (favourite === undefined) {
 		return;
 	}
 
-	localStorage.setItem("Favourite", searchInput.value);
+	localStorage.setItem("Favourite", favourite);
 	console.log(localStorage);
 });
 
@@ -165,5 +167,6 @@ showFavouriteLocation.addEventListener("click", () => {
 	console.log(favouriteLocation);
 	if (favouriteLocation) {
 		getWeatherByLocation(favouriteLocation);
+		favourite = favouriteLocation;
 	}
 });

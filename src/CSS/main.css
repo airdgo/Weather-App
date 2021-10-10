@@ -41,7 +41,7 @@ body {
   overflow: auto; }
 
 .card {
-  margin-top: 2rem;
+  margin-top: 3rem;
   padding: 2em;
   border-radius: 1em;
   width: 90%;
@@ -80,10 +80,67 @@ body {
   color: rgba(233, 233, 233, 0.9); }
 
 .fa-search,
-.fa-ellipsis-h {
+.fa-ellipsis-h,
+.fa-save,
+.fa-star {
   font-size: 1.2rem;
   color: inherit;
   pointer-events: none; }
+
+.save-location,
+.show-favourite {
+  padding: 0.7em;
+  border-radius: 0.7em;
+  width: 2.5rem;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: var(--white);
+  background-color: var(--card-background); }
+
+.save-location:active,
+.show-favourite:active {
+  transform: scale(0.95); }
+
+.save-show-icons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 7.15rem;
+  position: absolute;
+  right: 3rem;
+  top: 3rem; }
+
+.tooltip {
+  position: relative;
+  display: inline-block; }
+  .tooltip .save-tooltip,
+  .tooltip .favourite-tooltip {
+    visibility: hidden;
+    width: 120px;
+    background-color: #121212;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0; }
+  .tooltip .save-tooltip {
+    position: absolute;
+    z-index: 1;
+    width: 120px;
+    bottom: 105%;
+    left: 50%;
+    margin-left: -60px; }
+  .tooltip .favourite-tooltip {
+    position: absolute;
+    z-index: 1;
+    width: 120px;
+    top: 105%;
+    left: 50%;
+    margin-left: -60px; }
+
+.tooltip:hover .save-tooltip,
+.tooltip:hover .favourite-tooltip {
+  visibility: visible; }
 
 .card .city {
   margin-top: 2.5rem; }

@@ -18,7 +18,18 @@
 	</head>
 	<body>
 		<div class="lds-dual-ring loader"></div>
+
 		<section class="card">
+			<div class="save-show-icons">
+				<button id="save_location" class="save-location tooltip">
+					<i class="far fa-save"></i>
+					<span class="save-tooltip">Save a location</span>
+				</button>
+				<button id="show_favourite" class="show-favourite tooltip">
+					<i class="fas fa-star"></i>
+					<span class="favourite-tooltip">Show saved location</span>
+				</button>
+			</div>
 			<form id="form" class="form">
 				<input
 					id="search"
@@ -36,7 +47,5 @@
 		<div id="modal_container" class="modal-container">
 			<div id="modal" class="modal"></div>
 		</div>
-		<button id="save_location">SAVE</button>
-		<button id="show_favourite">SHOW</button>
 	</body>
 </html>
