@@ -62,7 +62,6 @@ async function getWeatherByLocation(location) {
 	for (let i = 0; i <= 7; i++) {
 		let day_x = new Date(2021, 10, 1); // get a date with the day index "1"
 		day_x.setDate(day_x.getDate() + i); // get the day number
-
 		nextDaysWeather(
 			i,
 			getDays[day_x.getDay()],
@@ -166,6 +165,7 @@ showFavouriteLocation.addEventListener("click", () => {
 	let favouriteLocation = localStorage.getItem("Favourite");
 	console.log(favouriteLocation);
 	if (favouriteLocation) {
+		nextDaysContainer.innerHTML = ""; // delete previous weather for the next days
 		getWeatherByLocation(favouriteLocation);
 		favourite = favouriteLocation;
 	}
