@@ -49,6 +49,8 @@ body {
 	background-size: cover;
 	background-position: center;
 	overflow: auto;
+	overflow-x: hidden;
+	position: relative;
 }
 
 .card {
@@ -59,6 +61,9 @@ body {
 	max-width: 30rem;
 	background-color: var(--card-background);
 	color: var(--white);
+	@media (max-width: 735px) {
+		position: relative;
+	}
 }
 
 .form {
@@ -76,6 +81,9 @@ body {
 	margin-right: 1rem;
 	color: var(--white);
 	background-color: var(--search-background);
+	@media (max-width: 735px) {
+		margin: 0.5em 0;
+	}
 }
 
 .form button,
@@ -114,6 +122,10 @@ body {
 	cursor: pointer;
 	color: var(--white);
 	background-color: var(--card-background);
+	@media (max-width: 735px) {
+		background-color: var(--search-background);
+		border-radius: 50%;
+	}
 }
 
 .save-location:active,
@@ -129,6 +141,11 @@ body {
 	position: absolute;
 	right: 3rem;
 	top: 3rem;
+
+	@media (max-width: 735px) {
+		top: 0.5rem;
+		right: 0.5rem;
+	}
 }
 
 // tooltip
@@ -316,7 +333,7 @@ $breakpoint-phone: 500px;
 .modal {
 	background-color: rgb(41, 40, 39);
 	color: var(--white);
-	width: 90%;
+	width: 95%;
 	max-width: 50rem;
 	padding: 2rem 3rem;
 	border-radius: 0.5em;
@@ -356,6 +373,12 @@ $breakpoint-phone: 500px;
 
 		@media (max-width: $breakpoint-phone) {
 			font-size: 0.9rem;
+		}
+	}
+
+	.column {
+		@media (max-width: $breakpoint-phone) {
+			text-align: center;
 		}
 	}
 }

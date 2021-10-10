@@ -15,7 +15,7 @@ export function cardModalHtml(
         <h1>Today:</h1>
         <div class="hours"></div>
         <div class="details">
-            <div>
+            <div class="column">
                 <p>Feels like:</p>
                 <span>${Math.round(feelsLike)}°C</span>
                 <p>Maximum temperature</p>
@@ -23,7 +23,7 @@ export function cardModalHtml(
                 <p>Pressure</p>
                 <span>${pressure} hPa</span>
             </div>
-            <div>
+            <div class="column">
                 <p>UV index</p>
                 <span>${uvi}</span>
                 <p>Minimum temperature</p>
@@ -71,7 +71,7 @@ function nextDaysModalHtml(
 	modal.innerHTML = `
         <h1>${day}:</h1>
         <div class="details">
-            <div>
+            <div class="column">
                 <p>Feels like:</p>
                 <span>${Math.round(feelsLike)}°C</span>
                 <p>Maximum temperature</p>
@@ -79,7 +79,7 @@ function nextDaysModalHtml(
                 <p>Pressure</p>
                 <span>${pressure} hPa</span>
             </div>
-            <div>
+            <div class="column">
                 <p>UV index</p>
                 <span>${uvi}</span>
                 <p>Minimum temperature</p>

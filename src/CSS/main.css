@@ -38,7 +38,9 @@ body {
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
-  overflow: auto; }
+  overflow: auto;
+  overflow-x: hidden;
+  position: relative; }
 
 .card {
   margin-top: 3rem;
@@ -48,6 +50,9 @@ body {
   max-width: 30rem;
   background-color: var(--card-background);
   color: var(--white); }
+  @media (max-width: 735px) {
+    .card {
+      position: relative; } }
 
 .form {
   display: flex;
@@ -63,6 +68,9 @@ body {
   margin-right: 1rem;
   color: var(--white);
   background-color: var(--search-background); }
+  @media (max-width: 735px) {
+    .search {
+      margin: 0.5em 0; } }
 
 .form button,
 .wind button {
@@ -97,6 +105,11 @@ body {
   cursor: pointer;
   color: var(--white);
   background-color: var(--card-background); }
+  @media (max-width: 735px) {
+    .save-location,
+    .show-favourite {
+      background-color: var(--search-background);
+      border-radius: 50%; } }
 
 .save-location:active,
 .show-favourite:active {
@@ -110,6 +123,10 @@ body {
   position: absolute;
   right: 3rem;
   top: 3rem; }
+  @media (max-width: 735px) {
+    .save-show-icons {
+      top: 0.5rem;
+      right: 0.5rem; } }
 
 .tooltip {
   position: relative;
@@ -256,7 +273,7 @@ body {
 .modal {
   background-color: #292827;
   color: var(--white);
-  width: 90%;
+  width: 95%;
   max-width: 50rem;
   padding: 2rem 3rem;
   border-radius: 0.5em; }
@@ -288,6 +305,9 @@ body {
     @media (max-width: 500px) {
       .modal button {
         font-size: 0.9rem; } }
+  @media (max-width: 500px) {
+    .modal .column {
+      text-align: center; } }
 
 .hours {
   display: grid;
