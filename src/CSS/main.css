@@ -37,10 +37,11 @@ body {
   flex-direction: column;
   font-family: "Open Sans";
   background: #222;
+  height: 100vh;
   background-image: url("https://source.unsplash.com/1600x900/?Landscape");
   background-attachment: fixed;
   background-position: center;
-  background-repeat: no-repeat;
+  background-size: cover;
   overflow: auto;
   overflow-x: hidden;
   position: relative; }
