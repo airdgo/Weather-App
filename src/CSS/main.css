@@ -37,7 +37,6 @@ body {
   flex-direction: column;
   font-family: "Open Sans";
   background: #222;
-  height: 100%;
   background-image: url("https://source.unsplash.com/1600x900/?Landscape");
   background-attachment: fixed;
   background-position: center;
