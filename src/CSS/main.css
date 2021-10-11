@@ -29,18 +29,18 @@
 /* General styling */
 /* Card styling */
 html {
-  background: #222;
-  background-image: url("https://source.unsplash.com/1600x900/?Landscape");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center center;
-  background-size: cover; }
+  overflow-x: hidden; }
 
 body {
   display: flex;
   align-items: center;
   flex-direction: column;
   font-family: "Open Sans";
+  background: #222;
+  height: 100vh;
+  background-image: url("https://source.unsplash.com/1600x900/?Landscape");
+  background-attachment: fixed;
+  background-position: center;
   overflow: auto;
   overflow-x: hidden;
   position: relative; }
