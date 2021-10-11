@@ -74,7 +74,9 @@ body {
   background-color: var(--search-background); }
   @media (max-width: 735px) {
     .search {
-      margin: 0.5em 0; } }
+      margin: 1em 0;
+      padding: 0.7em;
+      width: 80%; } }
 
 .form button,
 .wind button {
@@ -113,7 +115,10 @@ body {
     .save-location,
     .show-favourite {
       background-color: var(--search-background);
-      border-radius: 50%; } }
+      border-radius: 50%;
+      font-size: 1rem;
+      width: 2.3rem;
+      padding: 0.4em; } }
 
 .save-location:active,
 .show-favourite:active {
@@ -129,8 +134,34 @@ body {
   top: 3rem; }
   @media (max-width: 735px) {
     .save-show-icons {
-      top: 0.5rem;
-      right: 0.5rem; } }
+      height: unset;
+      width: 6rem;
+      flex-direction: row;
+      right: unset;
+      top: 6rem; } }
+
+.instructions {
+  width: 90%;
+  max-width: 30rem;
+  margin-top: 1em;
+  padding: 0.2em;
+  border-radius: 0.5em;
+  background-color: var(--card-background);
+  color: var(--white);
+  display: none; }
+  @media (max-width: 735px) {
+    .instructions {
+      display: block; } }
+
+.save-instruction,
+.load-instruction {
+  display: flex;
+  align-items: center;
+  margin: 1em; }
+
+.noevent {
+  pointer-events: none;
+  margin-right: 1em; }
 
 .tooltip {
   position: relative;
@@ -162,6 +193,10 @@ body {
 .tooltip:hover .save-tooltip,
 .tooltip:hover .favourite-tooltip {
   visibility: visible; }
+  @media (max-width: 735px) {
+    .tooltip:hover .save-tooltip,
+    .tooltip:hover .favourite-tooltip {
+      visibility: hidden; } }
 
 .card .city {
   margin-top: 2.5rem; }

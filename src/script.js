@@ -44,9 +44,9 @@ async function getWeatherByLocation(location) {
 	console.log(respData);
 
 	// Update backgorund image according to the weather description
-	document.body.style.backgroundImage = `url('https://source.unsplash.com/1600x900/?${query(
-		responseData.weather[0].description
-	)}')`;
+	// document.body.style.backgroundImage = `url('https://source.unsplash.com/1600x900/?${query(
+	// 	responseData.weather[0].description
+	// )}')`;
 
 	// Display the current weather on the card
 	updateCardWeather(
@@ -103,12 +103,14 @@ let favourite; // variable to store the input value
 // Event listener on form
 form.addEventListener("submit", (e) => {
 	e.preventDefault();
-
 	nextDaysContainer.innerHTML = ""; // delete previous weather for the next days
 	if (searchInput.value === "") {
 		cardWeather.innerHTML = `<p class="error-location">Please enter a location!</p>`;
 		return;
 	}
+	// Hide the instructions menu
+	const instructions = document.getElementById("instructions");
+	instructions.style.display = "none";
 	getWeatherByLocation(searchInput.value);
 	favourite = searchInput.value;
 	searchInput.value = "";
@@ -168,5 +170,8 @@ showFavouriteLocation.addEventListener("click", () => {
 		nextDaysContainer.innerHTML = ""; // delete previous weather for the next days
 		getWeatherByLocation(favouriteLocation);
 		favourite = favouriteLocation;
+		// Hide the instructions menu
+		const instructions = document.getElementById("instructions");
+		instructions.style.display = "none";
 	}
 });
