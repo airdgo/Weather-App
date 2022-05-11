@@ -101,6 +101,8 @@ body {
   outline: none;
   border: none;
   cursor: pointer;
+  transition: scale 1s;
+  transform: scale(1);
   color: var(--white);
   background-color: var(--search-background);
 }
@@ -112,10 +114,13 @@ body {
 .wind button:focus:not(:focus-visible) {
   outline: none;
 }
-
 .form button:hover,
 .wind button:hover {
   color: rgba(233, 233, 233, 0.9);
+}
+
+.form button:active {
+  transform: scale(1.05);
 }
 
 .fa-search,

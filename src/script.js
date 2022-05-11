@@ -5,8 +5,6 @@ import { updateCardWeather, nextDaysWeather } from "./displayWeather.js";
 import { cardModalHtml, updateHours, updateNextDaysModal } from "./modal.js";
 import { query } from "./helpers.js";
 
-const APIKEY = "624a1045c7d6dfb1ff081f2e59156af2";
-
 // Loading spinner
 window.addEventListener("load", () => {
 	const loader = document.querySelector(".loader");
