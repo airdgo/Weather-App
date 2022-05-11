@@ -102,6 +102,10 @@ body {
 	cursor: pointer;
 	color: var(--white);
 	background-color: var(--search-background);
+
+	&:focus {
+		outline: solid 1px white;
+	}
 }
 
 .form button:hover,
@@ -128,6 +132,11 @@ body {
 	cursor: pointer;
 	color: var(--white);
 	background-color: var(--card-background);
+
+	&:focus {
+		outline: solid 1px white;
+	}
+
 	@media (max-width: 735px) {
 		background-color: var(--search-background);
 		border-radius: 50%;
@@ -410,6 +419,10 @@ $breakpoint-phone: 500px;
 		background-color: transparent;
 		color: #fbfbfb;
 		font-size: 1rem;
+
+		&:focus {
+			outline: solid 1px white;
+		}
 
 		@media (max-width: $breakpoint-phone) {
 			font-size: 0.9rem;

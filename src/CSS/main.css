@@ -2,34 +2,41 @@
 :root {
   --white: #fbfbfb;
   --card-background: #000000d0;
-  --search-background: #7c7c7c2b; }
+  --search-background: #7c7c7c2b;
+}
 
 *,
 *::before,
 *::after {
   margin: 0;
   padding: 0;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+}
 
 /* Typography */
 .city {
   font-size: 2rem;
-  font-weight: 700; }
+  font-weight: 700;
+}
 
 .temperature {
   font-size: 2.7rem;
-  font-weight: 400; }
+  font-weight: 400;
+}
 
 .card-weather p {
-  font-size: 1rem; }
+  font-size: 1rem;
+}
 
 .search {
-  font-size: 1rem; }
+  font-size: 1rem;
+}
 
 /* General styling */
 /* Card styling */
 html {
-  overflow-x: hidden; }
+  overflow-x: hidden;
+}
 
 body {
   display: flex;
@@ -44,7 +51,8 @@ body {
   background-size: cover;
   overflow: auto;
   overflow-x: hidden;
-  position: relative; }
+  position: relative;
+}
 
 .card {
   margin-top: 3rem;
@@ -53,15 +61,19 @@ body {
   width: 90%;
   max-width: 30rem;
   background-color: var(--card-background);
-  color: var(--white); }
-  @media (max-width: 735px) {
-    .card {
-      position: relative; } }
+  color: var(--white);
+}
+@media (max-width: 735px) {
+  .card {
+    position: relative;
+  }
+}
 
 .form {
   display: flex;
   justify-content: space-between;
-  align-items: center; }
+  align-items: center;
+}
 
 .search {
   padding: 1em;
@@ -71,12 +83,15 @@ body {
   width: 85%;
   margin-right: 1rem;
   color: var(--white);
-  background-color: var(--search-background); }
-  @media (max-width: 735px) {
-    .search {
-      margin: 1em 0;
-      padding: 0.7em;
-      width: 80%; } }
+  background-color: var(--search-background);
+}
+@media (max-width: 735px) {
+  .search {
+    margin: 1em 0;
+    padding: 0.7em;
+    width: 80%;
+  }
+}
 
 .form button,
 .wind button {
@@ -87,11 +102,17 @@ body {
   border: none;
   cursor: pointer;
   color: var(--white);
-  background-color: var(--search-background); }
+  background-color: var(--search-background);
+}
+.form button:focus,
+.wind button:focus {
+  outline: solid 1px white;
+}
 
 .form button:hover,
 .wind button:hover {
-  color: rgba(233, 233, 233, 0.9); }
+  color: rgba(233, 233, 233, 0.9);
+}
 
 .fa-search,
 .fa-ellipsis-h,
@@ -99,7 +120,8 @@ body {
 .fa-star {
   font-size: 1.2rem;
   color: inherit;
-  pointer-events: none; }
+  pointer-events: none;
+}
 
 .save-location,
 .show-favourite {
@@ -110,19 +132,27 @@ body {
   border: none;
   cursor: pointer;
   color: var(--white);
-  background-color: var(--card-background); }
-  @media (max-width: 735px) {
-    .save-location,
-    .show-favourite {
-      background-color: var(--search-background);
-      border-radius: 50%;
-      font-size: 1rem;
-      width: 2.3rem;
-      padding: 0.4em; } }
+  background-color: var(--card-background);
+}
+.save-location:focus,
+.show-favourite:focus {
+  outline: solid 1px white;
+}
+@media (max-width: 735px) {
+  .save-location,
+.show-favourite {
+    background-color: var(--search-background);
+    border-radius: 50%;
+    font-size: 1rem;
+    width: 2.3rem;
+    padding: 0.4em;
+  }
+}
 
 .save-location:active,
 .show-favourite:active {
-  transform: scale(0.95); }
+  transform: scale(0.95);
+}
 
 .save-show-icons {
   display: flex;
@@ -131,14 +161,17 @@ body {
   height: 7.15rem;
   position: absolute;
   right: 3rem;
-  top: 3rem; }
-  @media (max-width: 735px) {
-    .save-show-icons {
-      height: unset;
-      width: 6rem;
-      flex-direction: row;
-      right: unset;
-      top: 6rem; } }
+  top: 3rem;
+}
+@media (max-width: 735px) {
+  .save-show-icons {
+    height: unset;
+    width: 6rem;
+    flex-direction: row;
+    right: unset;
+    top: 6rem;
+  }
+}
 
 .instructions {
   width: 90%;
@@ -148,67 +181,82 @@ body {
   border-radius: 0.5em;
   background-color: var(--card-background);
   color: var(--white);
-  display: none; }
-  @media (max-width: 735px) {
-    .instructions {
-      display: block; } }
+  display: none;
+}
+@media (max-width: 735px) {
+  .instructions {
+    display: block;
+  }
+}
 
 .save-instruction,
 .load-instruction {
   display: flex;
   align-items: center;
-  margin: 1em; }
+  margin: 1em;
+}
 
 .noevent {
   pointer-events: none;
-  margin-right: 1em; }
+  margin-right: 1em;
+}
 
 .tooltip {
   position: relative;
-  display: inline-block; }
-  .tooltip .save-tooltip,
-  .tooltip .favourite-tooltip {
-    visibility: hidden;
-    width: 120px;
-    background-color: #121212;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0; }
-  .tooltip .save-tooltip {
-    position: absolute;
-    z-index: 1;
-    width: 120px;
-    bottom: 105%;
-    left: 50%;
-    margin-left: -60px; }
-  .tooltip .favourite-tooltip {
-    position: absolute;
-    z-index: 1;
-    width: 120px;
-    top: 105%;
-    left: 50%;
-    margin-left: -60px; }
+  display: inline-block;
+}
+.tooltip .save-tooltip,
+.tooltip .favourite-tooltip {
+  visibility: hidden;
+  width: 120px;
+  background-color: #121212;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+}
+.tooltip .save-tooltip {
+  position: absolute;
+  z-index: 1;
+  width: 120px;
+  bottom: 105%;
+  left: 50%;
+  margin-left: -60px;
+}
+.tooltip .favourite-tooltip {
+  position: absolute;
+  z-index: 1;
+  width: 120px;
+  top: 105%;
+  left: 50%;
+  margin-left: -60px;
+}
 
 .tooltip:hover .save-tooltip,
 .tooltip:hover .favourite-tooltip {
-  visibility: visible; }
-  @media (max-width: 735px) {
-    .tooltip:hover .save-tooltip,
-    .tooltip:hover .favourite-tooltip {
-      visibility: hidden; } }
+  visibility: visible;
+}
+@media (max-width: 735px) {
+  .tooltip:hover .save-tooltip,
+.tooltip:hover .favourite-tooltip {
+    visibility: hidden;
+  }
+}
 
 .card .city {
-  margin-top: 2.5rem; }
+  margin-top: 2.5rem;
+}
 
 .temperature-and-icon {
   display: flex;
   align-items: center;
-  margin: 0.5rem 0; }
+  margin: 0.5rem 0;
+}
 
 .error-location {
   text-align: center;
-  margin-top: 2rem; }
+  margin-top: 2rem;
+}
 
 /* Next days styling */
 .nextdays-weather {
@@ -218,7 +266,8 @@ body {
   width: 100%;
   max-width: 100rem;
   justify-items: center;
-  margin: 2rem 0; }
+  margin: 2rem 0;
+}
 
 .day {
   position: relative;
@@ -227,12 +276,14 @@ body {
   width: 90%;
   max-width: 30rem;
   background-color: var(--card-background);
-  color: var(--white); }
+  color: var(--white);
+}
 
 .lds-dual-ring {
   display: inline-block;
   width: 80px;
-  height: 80px; }
+  height: 80px;
+}
 
 .lds-dual-ring:after {
   content: " ";
@@ -243,13 +294,17 @@ body {
   border-radius: 50%;
   border: 6px solid #fcf;
   border-color: #fcf transparent #fcf transparent;
-  animation: lds-dual-ring 1.2s linear infinite; }
+  animation: lds-dual-ring 1.2s linear infinite;
+}
 
 @keyframes lds-dual-ring {
   0% {
-    transform: rotate(0deg); }
+    transform: rotate(0deg);
+  }
   100% {
-    transform: rotate(360deg); } }
+    transform: rotate(360deg);
+  }
+}
 .loader {
   position: fixed;
   z-index: 99;
@@ -259,21 +314,26 @@ body {
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+}
 
 .loader.hidden {
   animation: fadeOut 1s;
-  animation-fill-mode: forwards; }
+  animation-fill-mode: forwards;
+}
 
 @keyframes fadeOut {
   100% {
     opacity: 0;
     visibility: hidden;
-    z-index: -1; } }
+    z-index: -1;
+  }
+}
 .wind {
   display: flex;
   align-items: center;
-  justify-content: space-between; }
+  justify-content: space-between;
+}
 
 .next-days-button {
   position: absolute;
@@ -286,9 +346,11 @@ body {
   border: none;
   cursor: pointer;
   color: var(--white);
-  background-color: var(--search-background); }
-  .next-days-button:hover {
-    color: rgba(233, 233, 233, 0.9); }
+  background-color: var(--search-background);
+}
+.next-days-button:hover {
+  color: rgba(233, 233, 233, 0.9);
+}
 
 .modal-container {
   display: flex;
@@ -303,69 +365,92 @@ body {
   opacity: 0;
   pointer-events: none;
   transition: opacity 300ms ease;
-  overflow: auto; }
+  overflow: auto;
+}
 
 .modal-container.show {
   opacity: 1;
-  pointer-events: auto; }
+  pointer-events: auto;
+}
 
 .modal {
-  background-color: #292827;
+  background-color: rgb(41, 40, 39);
   color: var(--white);
   width: 95%;
   max-width: 50rem;
   padding: 2rem 3rem;
-  border-radius: 0.5em; }
-  @media (max-width: 500px) {
-    .modal h1 {
-      font-size: 1.4rem; } }
-  @media (max-width: 500px) {
-    .modal {
-      padding: 1rem 2rem; } }
+  border-radius: 0.5em;
+}
+@media (max-width: 500px) {
+  .modal h1 {
+    font-size: 1.4rem;
+  }
+}
+@media (max-width: 500px) {
+  .modal {
+    padding: 1rem 2rem;
+  }
+}
+.modal p {
+  margin: 1em 0;
+  opacity: 0.8;
+}
+@media (max-width: 500px) {
   .modal p {
-    margin: 1em 0;
-    opacity: 0.8; }
-    @media (max-width: 500px) {
-      .modal p {
-        font-size: 0.9rem; } }
+    font-size: 0.9rem;
+  }
+}
+.modal button {
+  display: block;
+  cursor: pointer;
+  border: none;
+  border-left: 1px solid;
+  border-right: 1px solid;
+  align-self: flex-start;
+  padding: 0.2em 0.7em;
+  margin-top: 1em;
+  font-family: inherit;
+  background-color: transparent;
+  color: #fbfbfb;
+  font-size: 1rem;
+}
+.modal button:focus {
+  outline: solid 1px white;
+}
+@media (max-width: 500px) {
   .modal button {
-    display: block;
-    cursor: pointer;
-    border: none;
-    border-left: 1px solid;
-    border-right: 1px solid;
-    align-self: flex-start;
-    padding: 0.2em 0.7em;
-    margin-top: 1em;
-    font-family: inherit;
-    background-color: transparent;
-    color: #fbfbfb;
-    font-size: 1rem; }
-    @media (max-width: 500px) {
-      .modal button {
-        font-size: 0.9rem; } }
-  @media (max-width: 500px) {
-    .modal .column {
-      text-align: center; } }
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 500px) {
+  .modal .column {
+    text-align: center;
+  }
+}
 
 .hours {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));
-  justify-items: center; }
+  justify-items: center;
+}
 
 .details {
   display: flex;
   justify-content: space-around;
-  margin: 1em 0; }
-  .details div {
-    display: flex;
-    flex-direction: column; }
-    .details div p {
-      text-transform: uppercase;
-      margin: 0;
-      line-height: 2;
-      font-size: 0.9rem; }
-    .details div span {
-      margin-bottom: 0.7em; }
+  margin: 1em 0;
+}
+.details div {
+  display: flex;
+  flex-direction: column;
+}
+.details div p {
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 2;
+  font-size: 0.9rem;
+}
+.details div span {
+  margin-bottom: 0.7em;
+}
 
 /*# sourceMappingURL=main.css.map */

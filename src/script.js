@@ -1,5 +1,5 @@
 // Import modules
-import APIKEY from "./apikey.js";
+// import APIKEY from "./apikey.js";
 import getDays from "./getDays.js";
 import { updateCardWeather, nextDaysWeather } from "./displayWeather.js";
 import { cardModalHtml, updateHours, updateNextDaysModal } from "./modal.js";
@@ -42,11 +42,6 @@ async function getWeatherByLocation(location) {
 	const respData = await resp.json();
 	console.log(responseData);
 	console.log(respData);
-
-	// Update backgorund image according to the weather description
-	// document.body.style.backgroundImage = `url('https://source.unsplash.com/1600x900/?${query(
-	// 	responseData.weather[0].description
-	// )}')`;
 
 	// Display the current weather on the card
 	updateCardWeather(
