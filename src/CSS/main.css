@@ -108,6 +108,10 @@ body {
 .wind button:focus {
   outline: solid 1px white;
 }
+.form button:focus:not(:focus-visible),
+.wind button:focus:not(:focus-visible) {
+  outline: none;
+}
 
 .form button:hover,
 .wind button:hover {
@@ -137,6 +141,10 @@ body {
 .save-location:focus,
 .show-favourite:focus {
   outline: solid 1px white;
+}
+.save-location:focus:not(:focus-visible),
+.show-favourite:focus:not(:focus-visible) {
+  outline: none;
 }
 @media (max-width: 735px) {
   .save-location,
@@ -348,6 +356,12 @@ body {
   color: var(--white);
   background-color: var(--search-background);
 }
+.next-days-button:focus {
+  outline: solid 1px white;
+}
+.next-days-button:focus:not(:focus-visible) {
+  outline: none;
+}
 .next-days-button:hover {
   color: rgba(233, 233, 233, 0.9);
 }
@@ -416,6 +430,9 @@ body {
 }
 .modal button:focus {
   outline: solid 1px white;
+}
+.modal button:focus:not(:focus-visible) {
+  outline: none;
 }
 @media (max-width: 500px) {
   .modal button {
