@@ -1,9 +1,9 @@
 // Import modules
-// import APIKEY from "./apikey.js";
 import getDays from "./getDays.js";
 import { updateCardWeather, nextDaysWeather } from "./displayWeather.js";
 import { cardModalHtml, updateHours, updateNextDaysModal } from "./modal.js";
 import { query } from "./helpers.js";
+import APIKEY from "./apikey.js";
 
 // Loading spinner
 window.addEventListener("load", () => {
